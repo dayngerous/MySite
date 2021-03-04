@@ -1,0 +1,14 @@
+<div class="row" >
+    {% for name in names %}
+    <div class="col-sm-3">
+      <div class="card" style="margin-bottom: 5%; display:block">
+            <div class="card" >
+                <img class="card-img-top" src="../../static/Jumbotron.jpeg" alt="Card image cap">
+                <div class="card-body" >
+                    <p class="card-text" >{{name.text}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

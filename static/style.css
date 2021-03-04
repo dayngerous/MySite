@@ -1,0 +1,11 @@
+#v-pill-nav {
+    display: inline-block;
+}
+
+
+@media (max-width: 767.98px) {
+    #v-pill-nav{
+        display:none;
+    }
+    
+}
