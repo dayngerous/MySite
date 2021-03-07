@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+  <form class="" action="{{ url_for('post')}}" method="post">
+    <div class="title-box">
+      <div class="box">
+          <input type="text" name="Title" placeholder="Title">
+          <br> <br>
+          <input type="text" name="img-url" placeholder="Insert image URL"><br>
+      </div>
+    </div>
+    <br>
+
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Article</label>
+      <textarea class="form-control" id="Article" name="article" rows="14"></textarea>
+    </div>
+    <button> Submit</button>
+  </form>
+</div>
+
+{% endblock %}

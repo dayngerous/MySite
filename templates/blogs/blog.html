@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+{% for blog in blogs %}
+<div class="container"style="30rem; padding:1%;">
+  <div class="card" style="width: ">
+    <img src= "url('{{blog.img_url}}')" class="card-img-top" alt="...">
+    <div class="container">
+      <h5 class="card-title">{{ blog.blog_title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ blog.author }}</h6>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ blog.article }}</p>
+    </div>
+  </div>
+
+</div>
+
+{% endfor %}
+{% endblock %}

@@ -1,30 +1,36 @@
+import datetime as dt
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import psycopg2
-
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgres://ifugbxrsglfgxk:0138a2c1e6ce6a504b323be66555d49eb6d7fe39aad717a09d57255771fa1a97@ec2-54-166-242-77.compute-1.amazonaws.com:5432/d8ci3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ifugbxrsglfgxk:0138a2c1e6ce6a504b323be66555d49eb6d7fe39aad717a09d57255771fa1a97@ec2-54-166-242-77.compute-1.amazonaws.com:5432/d8ci38lfi0klnu'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db=SQLAlchemy(app)
 
-db = SQLAlchemy(app)
 
-class songs(db.Model):
-    id = db.Column('song_id', db.Integer, primary_key = True)
-    song_title = db.Column(db.String(50), nullable=False)
-    artist = db.Column(db.String(100))
-    description = db.Column(db.String(500))
-    producer = db.Column(db.String(100), default=None)
-    mix_eng = db.Column(db.String(100))
-    year = db.Column(db.DateTime)
+class Song(db.Model):
+    __tablename__='songs'
+    song_id = db.Column(db.Integer, primary_key=True)
+    song_title = db.Column(db.String, nullable=False)
+    artist = db.Column(db.String, nullable=False)
+    description = db.Column(db.String, nullable=True)
+    producer = db.Column(db.String, nullable=True)
+    mix_eng = db.Column(db.String, nullable=True)
+    year = db.Column(db.String, nullable=False)
 
-    def __init__(self, song_title, artist, descriprion, producer, mix_eng,year):
-        self.song_title = song_title
-        self.artist = artist
-        self.description = descriprion
-        self.producer = producer
-        self.mix_eng = mix_eng
-        self.year = year
-
+class Article(db.Model):
+    __tablename__='articles'
+    id = db.Column(db.Integer, primary_key=True)
+    author = db.Column(db.String, default="Dayne Guy", nullable=False)
+    blog_title = db.Column(db.String, nullable=False)
+    article = db.Column(db.String, nullable=False)
+    img_url = db.Column(db.String, nullable=True)
+    date_published =  db.Column(db.DateTime, nullable=False, default=dt.datetime.now())
 
 
 db.create_all()
+#
+# freak = Song(song_title='Freak', artist='Terrel', description='Song by TC Vision pioneer', mix_eng='Dayngerous', year=2021 )
+# db.session.add(freak)
+# db.session.commit()
